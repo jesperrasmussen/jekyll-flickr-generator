@@ -69,6 +69,7 @@ class FlickrApiCached
   def initialize 
     @photos = FlickrApiCachedPrefix.new(:photos)
     @photosets = FlickrApiCachedPrefix.new(:photosets)
+    @collections = FlickrApiCachedPrefix.new(:collections)
   end
 
   def photos
@@ -77,6 +78,10 @@ class FlickrApiCached
 
   def photosets
     return @photosets
+  end
+
+  def collections
+    return @collections
   end
 end
 
