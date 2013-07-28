@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+{% assign prev_category = null %}
+
+<div class="hero">
+  <h4>{{ site.title }}</h4>
+</div>
+
+<div class="section row container">
+{% for set in page.sets %}
+    {% if prev_category != set['category'] && !forloop.first %}
+</div>
+<div class="section row container">
+    <div class="collection-header">
+        <h2>{{set['category']}}</h2>
+    </div>
+</div>
+<div class="section row container">
+    {% assign prev_category = set['category'] %}
+    {% endif %}
+    <div>
+    	<div class="img-frame">
+    		<div>
+        		<a href="{{set['path']}}">
+    	    		<img src="{{set['primary_image'].src}}"/>
+        		</a>
+        	</div>
+        	<a href="{{set['path']}}">
+        		<h5>{{set['title']}}</h5>
+        		<div class="description">{{set['primary_image'].description}}</div>
+        	</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
