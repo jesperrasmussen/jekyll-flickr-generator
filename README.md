@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jesperrasmussen/octopress-flickr-generator.png?label=ready&title=Ready)](https://waffle.io/jesperrasmussen/octopress-flickr-generator)
 octopress-flickr-generator
 =======================
 
