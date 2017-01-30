@@ -1,3 +1,4 @@
+[![Stories In Progress](https://badge.waffle.io/jesperrasmussen/octopress-flickr-generator.png?label=in+progress&title=In+Progress)](https://waffle.io/jesperrasmussen/octopress-flickr-generator)
 octopress-flickr-generator
 =======================
 
