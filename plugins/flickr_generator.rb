@@ -38,7 +38,7 @@ module Jekyll
     end
   end
 
-  class FlickrIndex < Page
+  class FlickrIndexPage < Page
     def initialize(site, base, dir, sets)
       @site = site
       @base = base
@@ -48,12 +48,19 @@ module Jekyll
       self.process(@name)
       self.read_yaml(File.join(base, "_layouts"), "flickr_index.html")
       self.data["title"] = site.config["flickr"]["title"] || "Photos"
-      self.data["sets"] = []
-      sets.each {|set| self.data["sets"].push(set.data)}
+
+      hashmap = {}
+
+      sets.each do |set|
+        category = set.data["category"]
+        hashmap["#{category}"] = hashmap["#{category}"] || []
+        hashmap["#{category}"].push(set.data)
+      end
+      self.data["sets"] = hashmap
     end
   end
 
-  class FlickrSetIndexPage < Page
+  class FlickrSetPage < Page
 
     def initialize(site, base, setname, setid, dir)
       @site = site
@@ -87,7 +94,7 @@ module Jekyll
     end
   end
 
-  class FlickrSetIndex < Generator
+  class FlickrIndexGenerator < Generator
     safe true
 
     def generate(site)
@@ -97,8 +104,8 @@ module Jekyll
       collections = Hash.new
 
       # Get collections from user
-      test = flickrCached.collections.getTree(:user_id => site.config['flickr']['user_id'])
-      test['collection'].each do |collection|
+      user_collections = flickrCached.collections.getTree(:user_id => site.config['flickr']['user_id'])
+      user_collections['collection'].each do |collection|
         activecollection = {
           :date => '',
           :sets => []
@@ -112,21 +119,22 @@ module Jekyll
       response = flickrCached.photosets.getList(:user_id => site.config['flickr']['user_id'])
       response['photoset'].each do |photoset|
         photosetid = photoset['id']
-        setindex = FlickrSetIndexPage.new(site, site.source, photoset.title, photosetid, dir)
+        setindex = FlickrSetPage.new(site, site.source, photoset.title, photosetid, dir)
         
         setindex.render(site.layouts, site.site_payload)
         setindex.write(site.dest)
-        category = collections.select {|k,v| v[:sets].include?(photosetid)}.first()
-        setindex.data["category"] = category[0] unless category.nil? 
+        category = collections.select {|k,v| v[:sets].include?(photosetid)}.first
+
+        setindex.data["category"] = category.nil? ? Time.at(setindex.data["date_taken"]).year : category[0]
         site.pages << setindex
         sets << setindex
       end
 
       sets = sets.group_by{|set| set.data['category'] ? set.data['category'] : set.data['date_taken']}.
-      map{|k,v| v.sort_by{|set| -set.data['date_taken']}}.
-      sort_by{|sets| -sets[0].data['date_taken']}.flatten
+        map{|k,v| v.sort_by{|set| -set.data['date_taken']}}.
+        sort_by{|sets| -sets[0].data['date_taken']}.flatten
 
-      flickr_index = FlickrIndex.new(site, site.source, '', sets)
+      flickr_index = FlickrIndexPage.new(site, site.source, '', sets)
       flickr_index.render(site.layouts, site.site_payload)
       flickr_index.write(site.dest)
       site.pages << flickr_index
