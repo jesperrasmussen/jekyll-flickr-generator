@@ -60,9 +60,9 @@ Once you have these, you may add the following to your _config.yml:
 	  
 The fields not obvious above, are as follows:
 
-`user_id` This is your user id (NOT username). It's a bit hidden on flickr - [This service gets it easily for you](http://idgettr.com)
-`thumb_size` The flickr size of your thumbnails - a list is available [from flickr](http://www.flickr.com/services/api/misc.urls.html)
-`large_size` Same definition as `thumb_size`. This is the image you probably want to view in a gallery as it's a larger version of the image.
+`user_id` This is your user id (NOT username). It's a bit hidden on flickr - [This service gets it easily for you](http://idgettr.com)  
+`thumb_size` The flickr size of your thumbnails - a list is available [from flickr](http://www.flickr.com/services/api/misc.urls.html)  
+`large_size` Same definition as `thumb_size`. This is the image you probably want to view in a gallery as it's a larger version of the image.  
 `dir` The basedir of your gallery. Mine is ´photos´, causing all gallery URL's to start with `/photos`
 
 ##Setup
