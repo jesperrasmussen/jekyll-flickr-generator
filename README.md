@@ -1,5 +1,5 @@
-[![Stories In Progress](https://badge.waffle.io/jesperrasmussen/octopress-flickr-generator.png?label=in+progress&title=In+Progress)](https://waffle.io/jesperrasmussen/octopress-flickr-generator)
-octopress-flickr-generator
+[![Stories In Progress](https://badge.waffle.io/jesperrasmussen/jekyll-flickr-generator.png?label=in+progress&title=In+Progress)](https://waffle.io/jesperrasmussen/jekyll-flickr-generator)
+jekyll-flickr-generator
 =======================
 
 A page generator for allowing page generation based on sets from flickr.
@@ -25,7 +25,7 @@ I've been on a vacation to Asia, and want a set for each city I've visited. Inst
  * My very cute cat
  * Calcutta
 
-octopress-flickr-generator will, if you use Collections in flickr to gather the asian cities sets in a "Asia trip" collection, render the list like so:
+jekyll-flickr-generator will, if you use Collections in flickr to gather the asian cities sets in a "Asia trip" collection, render the list like so:
 
  * Asia Trip
  	* Tokyo
@@ -36,13 +36,13 @@ octopress-flickr-generator will, if you use Collections in flickr to gather the 
 
 ## Prerequirements
 
-octopress-flickr-generator uses a few things, like flickraw and memoize for caching. To get these, add these to your Gemfile:
+jekyll-flickr-generator uses a few things, like flickraw and memoize for caching. To get these, add these to your Gemfile:
 
 	gem 'flickraw'
 	gem 'builder', '> 2.0.0'
 	gem 'persistent_memoize'
 	
-After adding these, run `bundle install` in the octopress installation to fetch and install the needed gems.
+After adding these, run `bundle install` in the jekyll installation to fetch and install the needed gems.
 
 ##API setup
 
@@ -67,9 +67,9 @@ The fields not obvious above, are as follows:
 
 ##Setup
 
-This is pretty simple. Copy or symlink the plugins from the `plugins` folder in the repo to your Octopress plugins folder. 
+This is pretty simple. Copy or symlink the plugins from the `plugins` folder in the repo to your jekyll plugins folder. 
 
-The `source/_layouts` folder should of course be in `source/_layouts` of your octopress installation, as this is where the generator will look for them.
+The `_layouts` folder should of course be in `_layouts` of your jekyll installation, as this is where the generator will look for them.
 
 I've included some simple examples which you will probably modify a lot to your needs.
 
