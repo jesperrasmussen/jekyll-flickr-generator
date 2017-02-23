@@ -8,6 +8,8 @@ This allows for automatic creation of a complete gallery, based on a users sets 
 
 Also, instead of providing a complete plug'n'play setup, this generator uses template files for rendering the set index as well as the actual set gallery, allowing for customization as you want.
 
+**Note:** This generator was originally created for Octopress, however it should work with both Jekyll and Octopress, as I've used it in both.
+
 ## Additional features
 
 One very special thing about the generator, is that it has a special "clever" way of listing the flickr sets.
